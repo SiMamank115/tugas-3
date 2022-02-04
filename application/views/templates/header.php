@@ -28,7 +28,7 @@
                         <a class="nav-link px-3 nav-top-link pill-2" href="<?=base_url()?>about">About</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link px-3 nav-top-link pill-3" href="<?=base_url()?>contact">Contact</a>
+                        <a class="nav-link px-3 nav-top-link pill-3" href="<?=base_url()?>peoples">Peoples</a>
                     </li>
                 </ul>
             </div>

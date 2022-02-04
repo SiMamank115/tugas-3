@@ -4,7 +4,7 @@
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="<?= base_url()?>home" class="nav-link nav-bottom-link pill-1 active px-2 text-muted">Home</a></li>
             <li class="nav-item"><a href="<?= base_url()?>about" class="nav-link nav-bottom-link pill-2 px-2 text-muted">About</a></li>
-            <li class="nav-item"><a href="<?= base_url()?>contact" class="nav-link nav-bottom-link pill-3 px-2 text-muted">Contact</a></li>
+            <li class="nav-item"><a href="<?= base_url()?>peoples" class="nav-link nav-bottom-link pill-3 px-2 text-muted">Peoples</a></li>
         </ul>
     </footer>
 </div>

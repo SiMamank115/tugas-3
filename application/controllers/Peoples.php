@@ -9,7 +9,7 @@ class Peoples extends CI_Controller {
         $data["pill"] = 3;
         $config["base_url"] = "http://localhost/tugas-3/peoples/index";
         $config["total_rows"] = $this->peoples->count();
-        $config["per_page"] = 12;
+        $config["per_page"] = 8;
 
         $config["full_tag_open"] = '<nav><ul class="pagination">';
         $config["full_tag_close"] = "</ul></nav>";
@@ -30,14 +30,13 @@ class Peoples extends CI_Controller {
         $config["prev_tag_open"] = '<li class="page-item">';
         $config["prev_tag_close"] = '</li>';
 
-        $config["cur_tag_open"] = '<li class="page-item active"><a class="page-link" href="#">';
+        $config["cur_tag_open"] = '<li class="page-item active"><a class="page-link custom-link-active" href="#">';
         $config["cur_tag_close"] = '</a></li>';
 
         $config["num_tag_open"] = '<li class="page-item">';
         $config["num_tag_close"] = '</li>';
 
-        $config["attributes"] = array("class" => "page-link");
-
+        $config["attributes"] = array("class" => "page-link border-top-0 border-bottom-0 custom-link");
         $this->pagination->initialize($config);
         $data["start"] = $start;
         $data["peoples"] = $this->peoples->get($config["per_page"],$start);
