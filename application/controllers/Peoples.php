@@ -1,45 +1,29 @@
 <?php
 
-class Peoples extends CI_Controller { 
+class Peoples extends CI_Controller
+{
     public function index($start = 1)
     {
-        $this->load->model("Peoples_model","peoples");
+        // die();
+        $this->load->model("Peoples_model", "peoples");
         $this->load->library('pagination');
+        $this->load->library('session');
+        if($this->input->post("submit")) {
+            $data["keyword"] = $this->input->post("keyword");
+            $this->session->set_userdata("keyword",$data["keyword"]);
+        } else {
+            $data["keyword"] = $this->session->userdata("keyword");
+        }
         $data['tittle'] = 'Daftar Orang';
         $data["pill"] = 3;
-        $config["base_url"] = "http://localhost/tugas-3/peoples/index";
-        $config["total_rows"] = $this->peoples->count();
+        $this->db->like("nama",$data["keyword"]);
+        $this->db->from("peoples");
+        $config["total_rows"] = $this->db->count_all_results();
+        $data["total_rows"] = $config['total_rows'];
         $config["per_page"] = 8;
-
-        $config["full_tag_open"] = '<nav><ul class="pagination">';
-        $config["full_tag_close"] = "</ul></nav>";
-
-        $config["first_link"] = "First";
-        $config["first_tag_open"] = '<li class="page-item">';
-        $config["first_tag_close"] = '</li>';
-
-        $config["last_link"] = "Last";
-        $config["last_tag_open"] = '<li class="page-item">';
-        $config["last_tag_close"] = '</li>';
-
-        $config["next_link"] = "&raquo;";
-        $config["next_tag_open"] = '<li class="page-item">';
-        $config["next_tag_close"] = '</li>';
-
-        $config["prev_link"] = "&laquo;";
-        $config["prev_tag_open"] = '<li class="page-item">';
-        $config["prev_tag_close"] = '</li>';
-
-        $config["cur_tag_open"] = '<li class="page-item active"><a class="page-link custom-link-active" href="#">';
-        $config["cur_tag_close"] = '</a></li>';
-
-        $config["num_tag_open"] = '<li class="page-item">';
-        $config["num_tag_close"] = '</li>';
-
-        $config["attributes"] = array("class" => "page-link border-top-0 border-bottom-0 custom-link");
         $this->pagination->initialize($config);
         $data["start"] = $start;
-        $data["peoples"] = $this->peoples->get($config["per_page"],$start);
+        $data["peoples"] = $this->peoples->get($config["per_page"], $start, $data["keyword"]);
         $this->load->view('templates/header', $data);
         $this->load->view('peoples', $data);
         $this->load->view('templates/footer');
