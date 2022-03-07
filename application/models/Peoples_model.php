@@ -13,4 +13,16 @@ class Peoples_model extends CI_Model
     {
         return $this->db->get("peoples")->num_rows();
     }
+    public function del($id) {
+        $this->db->delete("peoples",['id' => $id]);
+        return $this->db->affected_rows();
+    }
+    public function add($data) {
+        $this->db->insert('peoples',$data);
+        return $this->db->affected_rows();
+    }
+    public function edit($data,$id) {
+        $this->db->update('peoples',$data,['id' => $id]);
+        return $this->db->affected_rows();
+    }
 }
